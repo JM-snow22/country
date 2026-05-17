@@ -1,7 +1,6 @@
-from paises import CountryAPI
+from paises import PaisesAPI
 
-#Jesus 
-api = CountryAPI()
+api = PaisesAPI()
 japan   = api.by_name("japan")
 egypt   = api.by_name("egypt")
 spain   = api.by_name("spain")
