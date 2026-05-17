@@ -4,7 +4,7 @@ from requests.exceptions import (HTTPError,ConnectionError,Timeout)
 BASE = "https://restcountries.com/v3.1"
 
 
-class Pais:
+class Country:
     def __init__(self, data):
 
         self.name = data["name"]["common"]
@@ -34,7 +34,7 @@ class Pais:
         todos = [self] + otros
 
         print("\n")
-        print("Comparacion de paises")
+        print("Comparación de países")
         print("-" * 60)
 
         print(f"{'Pais':15} {'Poblacion':15} {'Area':15} {'Densidad'}")
@@ -59,14 +59,14 @@ class Pais:
         print(f"Mayor densidad: {mas_densidad.name}")
 
 
-class PaisesAPI:
+class CountryAPI:
     def by_name(self, name):
         url = f"{BASE}/name/{name}"
         try:
             r = requests.get(url, timeout=5)
             r.raise_for_status()
             data = r.json()[0]
-            pais = Pais(data)
+            pais = Country(data)
             return pais
         except Timeout:
             print("La API tardo mucho")
