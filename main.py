@@ -1,6 +1,7 @@
-from paises import CountryAPI
+from paises import CountryAPI, PaisesAPI
 
-api = CountryAPI()
+#Jesus 
+api = PaisesAPI()
 japan   = api.by_name("japan")
 egypt   = api.by_name("egypt")
 spain   = api.by_name("spain")
@@ -8,14 +9,14 @@ uruguay = api.by_name("uruguay")
 sweden  = api.by_name("sweden")
 
 
-# JUAN
+#JUAN
 jordan      = api.by_name("jordan")
 uzbekistan  = api.by_name("uzbekistan")
 argentina   = api.by_name("argentina")
 nepal       = api.by_name("nepal")
 
 
-print("\n===== PAÍSES ELEGIDOS =====\n")
+print("PAÍSES ELEGIDOS")
 paises = [
     japan,
     egypt,
@@ -32,7 +33,7 @@ for pais in paises:
     print(pais)
     print()
 
-print("\n COMPARACIÓN")
+print("COMPARACIÓN")
 
 japan.comparar([
     egypt,
