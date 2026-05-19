@@ -37,8 +37,7 @@ class Pais:
 
         return texto
 
-    def comparar(self, otros):
-        
+    def comparar(self, otros):     
         todos = [self] + otros
 
         print("\n")
@@ -93,7 +92,7 @@ class PaisesAPI:
     def varios_paises(self, nombres):
 
         with ThreadPoolExecutor() as executor:
-            
+
             paises = list(
             executor.map(self.by_name, nombres)
             )
