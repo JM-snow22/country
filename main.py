@@ -1,48 +1,33 @@
 from paises import PaisesAPI
 
+
 api = PaisesAPI()
 
-#jesus 
-japan   = api.by_name("japan")
-egypt   = api.by_name("egypt")
-spain   = api.by_name("spain")
-uruguay = api.by_name("uruguay")
-sweden  = api.by_name("sweden")
+nombres = [
 
+    # jesus
+    "japan",
+    "egypt",
+    "spain",
+    "uruguay",
+    "sweden",
 
-#JUAN
-jordan      = api.by_name("jordan")
-uzbekistan  = api.by_name("uzbekistan")
-argentina   = api.by_name("argentina")
-nepal       = api.by_name("nepal")
-
-
-print("PAÍSES ELEGIDOS")
-paises = [
-    japan,
-    egypt,
-    spain,
-    uruguay,
-    sweden,
-    jordan,
-    uzbekistan,
-    argentina,
-    nepal
+    # juan
+    "jordan",
+    "uzbekistan",
+    "argentina",
+    "nepal"
 ]
 
+paises = api.varios_paises(nombres)
+
+print("PAISES")
+
+
 for pais in paises:
+
     print(pais)
-    print()
 
-print("COMPARACIÓN")
 
-japan.comparar([
-    egypt,
-    spain,
-    uruguay,
-    sweden,
-    jordan,
-    uzbekistan,
-    argentina,
-    nepal
-])
+print("COMPARACION")
+paises[0].comparar(paises[1:])
