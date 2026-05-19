@@ -1,11 +1,19 @@
 import requests
-from requests.exceptions import (HTTPError,ConnectionError,Timeout)
+
+from requests.exceptions import (
+    HTTPError,
+    ConnectionError,
+    Timeout
+)
+
+from concurrent.futures import ThreadPoolExecutor
+
 
 BASE = "https://restcountries.com/v3.1"
 
+
 class Pais:
     def __init__(self, data):
-
         self.name = data["name"]["common"]
         self.capital = data.get("capital", ["No tiene"])[0]
         self.population = data.get("population", 0)
@@ -19,17 +27,18 @@ class Pais:
     def __str__(self):
 
         texto = ""
+
         texto += f"\nPais: {self.name}\n"
         texto += f"Capital: {self.capital}\n"
         texto += f"Poblacion: {self.population:,}\n"
-        texto += f"Area: {self.area:,} km2\n"
+        texto += f"Area: {self.area:,.0f} km2\n"
         texto += f"Region: {self.region}\n"
         texto += f"Densidad: {self.density():.2f} hab/km2\n"
 
         return texto
 
     def comparar(self, otros):
-
+        
         todos = [self] + otros
 
         print("\n")
@@ -50,6 +59,7 @@ class Pais:
             )
 
         print("-" * 60)
+
         mas_poblacion = max(todos, key=lambda x: x.population)
         mas_area = max(todos, key=lambda x: x.area)
         mas_densidad = max(todos, key=lambda x: x.density())
@@ -59,9 +69,13 @@ class Pais:
 
 
 class PaisesAPI:
+
     def by_name(self, name):
+
         url = f"{BASE}/name/{name}"
+
         try:
+
             r = requests.get(url, timeout=5)
             r.raise_for_status()
             data = r.json()[0]
@@ -74,3 +88,13 @@ class PaisesAPI:
         except HTTPError as e:
             print(f"Error: {e.response.status_code}")
         return None
+
+def varios_paises(self, nombres):
+
+        with ThreadPoolExecutor() as executor:
+
+            paises = list(
+                executor.map(self.by_name, nombres)
+            )
+
+        return paises
