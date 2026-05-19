@@ -1,9 +1,10 @@
 from paises import PaisesAPI
 
+
 api = PaisesAPI()
 
 
-# nombres de los paises
+#nombres de los paises
 nombres = [
 
     # jesus
@@ -20,6 +21,8 @@ nombres = [
     "nepal"
 ]
 
+
+
 paises = api.varios_paises(nombres)
 
 
@@ -28,20 +31,27 @@ print("PAÍSES ELEGIDOS")
 
 for pais in paises:
 
-    print(pais)
-    print()
+    if pais is not None:
+
+        print(pais)
+        print()
 
 
 print("COMPARACIÓN")
 
+paises_validos = []
 
-paises[0].comparar([
-    paises[1],
-    paises[2],
-    paises[3],
-    paises[4],
-    paises[5],
-    paises[6],
-    paises[7],
-    paises[8]
-])
+for pais in paises:
+
+    if pais is not None:
+        paises_validos.append(pais)
+
+
+
+if len(paises_validos) > 0:
+    primer_pais = paises_validos[0]
+    otros_paises = paises_validos[1:]
+    primer_pais.comparar(otros_paises)
+
+else:
+    print("No se pudieron cargar paises")
