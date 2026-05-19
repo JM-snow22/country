@@ -90,12 +90,12 @@ class PaisesAPI:
         return None
 
 
-def varios_paises(self, nombres):
+    def varios_paises(self, nombres):
 
-    with ThreadPoolExecutor(max_workers=3) as executor:
+        with ThreadPoolExecutor(max_workers=3) as executor:
 
-        paises = list(
+            paises = list(
             executor.map(self.by_name, nombres)
         )
 
-    return paises
+        return paises
