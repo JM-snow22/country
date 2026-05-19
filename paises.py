@@ -89,12 +89,13 @@ class PaisesAPI:
             print(f"Error: {e.response.status_code}")
         return None
 
-def varios_paises(self, nombres):
+
+    def varios_paises(self, nombres):
 
         with ThreadPoolExecutor() as executor:
-
+            
             paises = list(
-                executor.map(self.by_name, nombres)
+            executor.map(self.by_name, nombres)
             )
 
         return paises
