@@ -70,7 +70,7 @@ class Pais:
 class PaisesAPI:
 
     def by_name(self, name):
-
+        print(f"Buscando {name}...")
         url = f"{BASE}/name/{name}"
 
         try:
@@ -78,6 +78,7 @@ class PaisesAPI:
             r = requests.get(url, timeout=5)
             r.raise_for_status()
             data = r.json()[0]
+            print(f"{name} cargado")
             pais = Pais(data)
             return pais
         except Timeout:
@@ -94,7 +95,7 @@ class PaisesAPI:
         with ThreadPoolExecutor() as executor:
 
             paises = list(
-            executor.map(self.by_name, nombres)
+                executor.map(self.by_name, nombres)
             )
 
         return paises
